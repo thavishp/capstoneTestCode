@@ -1,8 +1,6 @@
 #include <AccelStepper.h>
 #include <Servo.h>
 
-#define debug true
-
 // ROLL CONSTANTS
 #define dirPin 5
 #define stepPin 3
@@ -69,7 +67,7 @@ void setup()
 void loop()
 {
 
-  // // Control Gripper
+  // Control Gripper
   if (!digitalRead(gripClosePin))
   {
     closeGrip();
@@ -107,11 +105,8 @@ void loop()
   {
     int rollPos = map(rollControl, 0, 1023, -10 * microStepCoef, 10 * microStepCoef);
     rollStepper.move(rollPos);
-    // int rollPos = map(rollControl, 0, 1023, -500 * microStepCoef, 500 * microStepCoef);
-    // rollStepper.setSpeed(rollPos);
   }
   rollStepper.run();
-  // rollStepper.runSpeed();
 }
 
 /*
@@ -155,25 +150,16 @@ void openGrip()
 {
   digitalWrite(gripPinA, LOW);
   digitalWrite(gripPinB, HIGH);
-  if (debug)
-  {
-  }
 }
 
 void closeGrip()
 {
   digitalWrite(gripPinA, HIGH);
   digitalWrite(gripPinB, LOW);
-  if (debug)
-  {
-  }
 }
 
 void stopGrip()
 {
   digitalWrite(gripPinA, LOW);
   digitalWrite(gripPinB, LOW);
-  if (debug)
-  {
-  }
 }
